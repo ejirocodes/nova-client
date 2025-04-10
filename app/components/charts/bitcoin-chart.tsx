@@ -97,7 +97,7 @@ export default function BitcoinChart({
           </Tabs>
         </div>
       </CardHeader>
-      <CardContent className="p-0 pt-4">
+      <CardContent className="p-0 pt-4 w-full">
         {isLoading && (
           <div className="flex justify-center items-center h-[500px] text-gray-400">
             Loading chart data...
@@ -121,7 +121,7 @@ export default function BitcoinChart({
                   color: "hsl(180, 70%, 35%)",
                 },
               }}
-              className="h-full"
+              className="h-full w-full"
             >
               <ResponsiveContainer width="100%" height={460}>
                 <ComposedChart
