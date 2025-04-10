@@ -36,12 +36,12 @@ export function Dashboard() {
     : undefined;
 
   return (
-    <main className="flex min-h-screen h-full flex-col items-center justify-center text-white p-4 bg-[#121212] w-full max-w-5xl mx-auto">
+    <main className="flex min-h-screen h-full flex-col items-center justify-center text-white p-4 bg-[#121212] w-full max-w-[1400px] mx-auto">
       <StatCardsRow score={347} lost={34} made={8} pending={70} />
       <div>
         <div className="flex flex-col items-center space-y-6 p-6">
           <div className="space-y-2">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-white">
               Will the price of Bitcoin go up or down?
             </p>
             <GuessDirectionControl
@@ -64,7 +64,7 @@ export function Dashboard() {
           )}
         </div>
       </div>
-      <section className="flex justify-center items-start gap-8  ">
+      <section className="flex justify-center items-start gap-6 w-full">
         <div className="flex-shrink-0">
           <ProfileCard
             profileImage={user?.imageUrl!}
@@ -75,8 +75,8 @@ export function Dashboard() {
             guessesPending={1}
           />
         </div>
-        <div className="w-full">
-          <h1 className="text-2xl font-bold text-white">Bitcoin/USD</h1>
+        <div className="w-full bg-nova-fg py-4 shadow-widget rounded-sm border border-nova">
+          <h1 className="text-xl font-bold text-white px-6">Bitcoin/USD</h1>
           <BitcoinChart
             priceData={priceData}
             isLoading={isLoading}

@@ -54,6 +54,16 @@ body {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-nova-bg: var(--nova-bg);
+  --color-nova-border: var(--nova-border);
+  --color-nova-text-primary: var(--nova-text-primary);
+  --color-nova-text-secondary: var(--nova-text-secondary);
+  --color-nova-icon-bg: var(--nova-icon-bg);
+  --color-nova-icon-fg: var(--nova-icon-fg);
+  --color-nova-active-bg: var(--nova-active-bg);
+  --color-nova-active-fg: var(--nova-active-fg);
+  --color-nova-icon-dark: var(--nova-icon-dark);
+  --box-shadow-widget: var(--box-shadow-widget);
 }
 
 :root {
@@ -89,6 +99,19 @@ body {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --nova-bg: #22252a;
+  --nova-border: #2e3238;
+  --nova-text-primary: #e3e5e8;
+  --nova-text-secondary: #8f97a3;
+  --nova-icon-bg: #8b98a9;
+  --nova-icon-fg: #17181c;
+  --nova-active-bg: #8b98a9;
+  --nova-active-fg: #17181c;
+  --nova-icon-dark: #121316;
+  --box-shadow-widget: 0 1px 1px 0 rgba(0, 0, 0, 0.11),
+    0 2px 2px 0 rgba(0, 0, 0, 0.11), 0 3px 4px 0 rgba(0, 0, 0, 0.11),
+    0 4px 6px 0 rgba(0, 0, 0, 0.11), 0 4px 10px 0 rgba(0, 0, 0, 0.11),
+    0 6px 16px 0 rgba(0, 0, 0, 0.11);
 }
 
 .dark {
@@ -123,6 +146,19 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --nova-bg: #22252a;
+  --nova-border: #2e3238;
+  --nova-text-primary: #e3e5e8;
+  --nova-text-secondary: #8f97a3;
+  --nova-icon-bg: #8b98a9;
+  --nova-icon-fg: #17181c;
+  --nova-active-bg: #8b98a9;
+  --nova-active-fg: #17181c;
+  --nova-icon-dark: #121316;
+  --box-shadow-widget: 0 1px 1px 0 rgba(0, 0, 0, 0.11),
+    0 2px 2px 0 rgba(0, 0, 0, 0.11), 0 3px 4px 0 rgba(0, 0, 0, 0.11),
+    0 4px 6px 0 rgba(0, 0, 0, 0.11), 0 4px 10px 0 rgba(0, 0, 0, 0.11),
+    0 6px 16px 0 rgba(0, 0, 0, 0.11);
 }
 
 @layer base {
@@ -147,5 +183,48 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+  }
+}
+
+/* Nova Theme Colors */
+@layer utilities {
+  .bg-nova {
+    background-color: var(--nova-bg);
+  }
+  .text-nova-primary {
+    color: var(--nova-text-primary);
+  }
+  .text-nova-secondary {
+    color: var(--nova-text-secondary);
+  }
+  .border-nova {
+    border-color: var(--nova-border);
+  }
+  .bg-nova-icon {
+    background-color: var(--nova-icon-bg);
+  }
+  .text-nova-icon {
+    color: var(--nova-icon-fg);
+  }
+  .bg-nova-fg {
+    background-color: var(--nova-icon-fg);
+  }
+  .bg-nova-active {
+    background-color: var(--nova-active-bg);
+  }
+  .text-nova-active {
+    color: var(--nova-active-fg);
+  }
+  .hover\:bg-nova-border:hover {
+    background-color: var(--nova-border);
+  }
+  .hover\:text-nova-primary:hover {
+    color: var(--nova-text-primary);
+  }
+  .text-nova-icon-dark {
+    color: var(--nova-icon-dark);
+  }
+  .shadow-widget {
+    box-shadow: var(--box-shadow-widget);
   }
 }

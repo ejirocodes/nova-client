@@ -52,8 +52,8 @@ export default function BitcoinChart({
   const data = priceData?.historicalData || [];
 
   return (
-    <Card className="bg-[#121212] border-0 rounded-none text-white w-full py-2">
-      <CardHeader className="px-0 pt-1 pb-2">
+    <Card className="border-0 rounded-none text-white bg-inherit w-full py-2 shadow-none">
+      <CardHeader className="pt-1 pb-2 px-6">
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
           <div>
             {currentPrice && (
@@ -83,12 +83,12 @@ export default function BitcoinChart({
               onPeriodChange(value as BitcoinPricePeriod)
             }
           >
-            <TabsList className="bg-[#252525]">
+            <TabsList className="bg-nova-fg">
               {Object.entries(TIME_PERIODS).map(([key, label]) => (
                 <TabsTrigger
                   key={key}
                   value={key}
-                  className="data-[state=active]:bg-[#333] text-gray-300 data-[state=active]:text-white"
+                  className="data-[state=active]:bg-[#333] cursor-pointer text-gray-300 data-[state=active]:text-white"
                 >
                   {key}
                 </TabsTrigger>

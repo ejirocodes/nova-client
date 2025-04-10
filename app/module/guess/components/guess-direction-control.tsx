@@ -23,7 +23,7 @@ export default function GuessDirectionControl({
   return (
     <div
       className={cn(
-        "flex w-full max-w-xs rounded-lg border border-[#2e3238]",
+        "flex w-full max-w-xs rounded-lg border border-nova shadow-widget",
         className
       )}
     >
@@ -33,19 +33,19 @@ export default function GuessDirectionControl({
         className={cn(
           "flex-1 cursor-pointer rounded-l-lg px-4 py-2 text-center text-sm font-medium transition-all flex items-center justify-center gap-2",
           selected === "up"
-            ? "bg-[#8b98a9] text-[#17181c]"
-            : "bg-[#22252A] hover:bg-[#2e3238] text-[#e3e5e8]"
+            ? "bg-nova-active text-nova-active"
+            : "bg-nova hover:bg-nova-border text-nova-primary"
         )}
         aria-pressed={selected === "up"}
       >
         <span>Up</span>
         <div
-          className={selected === "up" ? "bg-[#17181c] rounded-full p-1" : ""}
+          className={selected === "up" ? "bg-nova-icon rounded-full p-1" : ""}
         >
           <ArrowUp
             className={cn(
               "w-4 h-4",
-              selected === "up" ? "text-[#8b98a9]" : "text-[#e3e5e8]"
+              selected === "up" ? "text-nova-icon-dark" : "text-nova-primary"
             )}
           />
         </div>
@@ -56,19 +56,19 @@ export default function GuessDirectionControl({
         className={cn(
           "flex-1 cursor-pointer rounded-r-lg px-4 py-2 text-center text-sm font-medium transition-all flex items-center justify-center gap-2",
           selected === "down"
-            ? "bg-[#8b98a9] text-[#17181c]"
-            : "bg-[#22252A] hover:bg-[#2e3238] text-[#e3e5e8]"
+            ? "bg-nova-active text-nova-active"
+            : "bg-nova hover:bg-nova-border text-nova-primary"
         )}
         aria-pressed={selected === "down"}
       >
         <span>Down</span>
         <div
-          className={selected === "down" ? "bg-[#17181c] rounded-full p-1" : ""}
+          className={selected === "down" ? "bg-nova-icon rounded-full p-1" : ""}
         >
           <ArrowDown
             className={cn(
               "w-4 h-4",
-              selected === "down" ? "text-[#8b98a9]" : "text-[#e3e5e8]"
+              selected === "down" ? "text-nova-icon-dark" : "text-nova-primary"
             )}
           />
         </div>
