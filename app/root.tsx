@@ -50,25 +50,25 @@ if (!PUBLISHABLE_KEY) {
   throw new Error("Add your Clerk Publishable Key to the .env file");
 }
 
-function AuthTokenProvider() {
-  const { getToken } = useAuth();
+// function AuthTokenProvider() {
+//   const { getToken } = useAuth();
 
-  useEffect(() => {
-    const tokenProvider = async () => {
-      try {
-        return await getToken();
-      } catch (error) {
-        console.error("Failed to get auth token:", error);
-        return null;
-      }
-    };
+//   useEffect(() => {
+//     const tokenProvider = async () => {
+//       try {
+//         return await getToken();
+//       } catch (error) {
+//         console.error("Failed to get auth token:", error);
+//         return null;
+//       }
+//     };
 
-    // setAuthTokenProvider(tokenProvider);
-    // setSearchStreamAuthTokenProvider(tokenProvider);
-  }, [getToken]);
+//     setAuthTokenProvider(tokenProvider);
+//     setSearchStreamAuthTokenProvider(tokenProvider);
+//   }, [getToken]);
 
-  return null;
-}
+//   return null;
+// }
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -92,15 +92,15 @@ export default function App({ loaderData }: Route.ComponentProps) {
   return (
     <ClerkProvider
       loaderData={loaderData}
-      signUpUrl="/sign-up"
-      signInUrl="/sign-in"
-      signInFallbackRedirectUrl="/dashboard"
-      signUpFallbackRedirectUrl="/dashboard"
+      signUpUrl="/auth/sign-up"
+      signInUrl="/auth/sign-in"
+      signInFallbackRedirectUrl="/"
+      signUpFallbackRedirectUrl="/"
       afterSignOutUrl="/"
     >
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <AuthTokenProvider />
+          {/* <AuthTokenProvider /> */}
           <main>
             <Outlet />
           </main>
