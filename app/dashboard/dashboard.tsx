@@ -26,15 +26,17 @@ export function Dashboard() {
 
   return (
     <main className="flex min-h-screen h-full flex-col items-center justify-center text-white p-4 bg-[#121212]">
-      <section className="flex justify-center gap-8 w-full">
-        <ProfileCard
-          profileImage={user?.imageUrl!}
-          name={user?.emailAddresses[0].emailAddress!}
-          score={2}
-          guessesMade={10}
-          guessesLost={8}
-          guessesPending={1}
-        />
+      <section className="flex justify-center items-start gap-8 w-full">
+        <div className="flex-shrink-0">
+          <ProfileCard
+            profileImage={user?.imageUrl!}
+            name={user?.emailAddresses[0].emailAddress!}
+            score={2}
+            guessesMade={10}
+            guessesLost={8}
+            guessesPending={1}
+          />
+        </div>
         <div className="w-full max-w-6xl">
           <h1 className="text-2xl font-bold text-white">Bitcoin/USD</h1>
           <BitcoinChart

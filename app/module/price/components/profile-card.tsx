@@ -19,7 +19,7 @@ export default function ProfileCard({
   profileImage,
 }: ProfileCardProps) {
   return (
-    <Card className="max-w-md pt-0 pb-3 mx-auto overflow-hidden bg-[#1a1a1a] text-gray-200 border-none">
+    <Card className="max-w-md pt-0 pb-3 mx-auto overflow-hidden bg-[#1a1a1a] text-gray-200 border-none h-auto">
       <div className="h-40 bg-gradient-to-b from-[hsl(328,100%,54%)] to-[#1a1a1a] relative">
         <div className="absolute left-1/2 transform -translate-x-1/2 top-20">
           <div className="rounded-full overflow-hidden h-20 w-20">
