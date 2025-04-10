@@ -6,6 +6,7 @@ import ProfileCard from "~/module/price/components/profile-card";
 import { useUser } from "@clerk/react-router";
 import { Button } from "~/components/ui/button";
 import GuessDirectionControl from "~/module/guess/components/guess-direction-control";
+import { StatCardsRow } from "~/module/guess/components/stat-cards-row";
 
 export function Dashboard() {
   const { isSignedIn, user, isLoaded } = useUser();
@@ -35,7 +36,8 @@ export function Dashboard() {
     : undefined;
 
   return (
-    <main className="flex min-h-screen h-full flex-col items-center justify-center text-white p-4 bg-[#121212]">
+    <main className="flex min-h-screen h-full flex-col items-center justify-center text-white p-4 bg-[#121212] w-full max-w-5xl mx-auto">
+      <StatCardsRow score={347} lost={34} made={8} pending={70} />
       <div>
         <div className="flex flex-col items-center space-y-6 p-6">
           <div className="space-y-2">
@@ -62,7 +64,7 @@ export function Dashboard() {
           )}
         </div>
       </div>
-      <section className="flex justify-center items-start gap-8 w-full max-w-4xl mx-auto ">
+      <section className="flex justify-center items-start gap-8  ">
         <div className="flex-shrink-0">
           <ProfileCard
             profileImage={user?.imageUrl!}

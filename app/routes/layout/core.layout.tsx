@@ -3,7 +3,7 @@ import Header from "~/components/common/header";
 
 export default function DashboardLayout() {
   return (
-    <main className="h-full w-full bg-primary/5 overflow-hidden">
+    <main className="h-full w-full overflow-hidden bg-[#121212] ">
       <Header />
       <Outlet />
     </main>
