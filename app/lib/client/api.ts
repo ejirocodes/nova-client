@@ -216,7 +216,7 @@ export interface GuessResponseDto {
      * @type {string}
      * @memberof GuessResponseDto
      */
-    'direction': string;
+    'direction': GuessResponseDtoDirectionEnum;
     /**
      * The start price of the guess
      * @type {number}
@@ -230,6 +230,14 @@ export interface GuessResponseDto {
      */
     'createdAt': string;
 }
+
+export const GuessResponseDtoDirectionEnum = {
+    Up: 'up',
+    Down: 'down'
+} as const;
+
+export type GuessResponseDtoDirectionEnum = typeof GuessResponseDtoDirectionEnum[keyof typeof GuessResponseDtoDirectionEnum];
+
 
 /**
  * AppApi - axios parameter creator

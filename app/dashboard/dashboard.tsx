@@ -7,20 +7,22 @@ import { useUser } from "@clerk/react-router";
 import { Button } from "~/components/ui/button";
 import GuessDirectionControl from "~/module/guess/components/guess-direction-control";
 import { StatCardsRow } from "~/module/guess/components/stat-cards-row";
+import { useGuessPrice } from "~/module/guess/mutations/guess-price";
 
 export function Dashboard() {
   const { isSignedIn, user, isLoaded } = useUser();
 
+  const [period, setPeriod] = useState<BitcoinPricePeriod>("24h");
   const [direction, setDirection] = useState<"up" | "down">("up");
   const [result, setResult] = useState<string | null>(null);
 
-  const handleGuess = () => {
-    const correct = Math.random() > 0.5;
-    setResult(correct ? "Correct guess!" : "Wrong guess!");
-  };
-
-  const [period, setPeriod] = useState<BitcoinPricePeriod>("24h");
   const { data: price, isLoading, error } = useGetPrice(period);
+
+  const { mutate: createGuess, isPending } = useGuessPrice();
+
+  const handleGuess = () => {
+    createGuess({ direction });
+  };
 
   const handlePeriodChange = (newPeriod: BitcoinPricePeriod) => {
     setPeriod(newPeriod);

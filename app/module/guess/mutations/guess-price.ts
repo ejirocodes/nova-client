@@ -1,20 +1,20 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSwaggerApiParams } from '~/hooks/swagger/swagger-api-params';
-import { BitcoinPricePeriod, PriceApi } from '~/lib/client';
+import { GuessApi, type CreateGuessDto } from '~/lib/client';
 
 export const useGuessPrice = () => {
     const queryClient = useQueryClient();
 
     const swaggerApiParams = useSwaggerApiParams();
-    const priceApi = new PriceApi(...swaggerApiParams);
+    const guessApi = new GuessApi(...swaggerApiParams);
 
     return useMutation({
-        mutationFn: async (data: BitcoinPricePeriod) => {
-            const res = await priceApi.priceControllerGetBitcoinPrice(data);
+        mutationFn: async (data: CreateGuessDto) => {
+            const res = await guessApi.guessControllerCreateGuess(data);
             return res.data;
         },
         onSuccess: async (data) => {
-            await queryClient.invalidateQueries({ queryKey: ['investor-analysis'] });
+            await queryClient.invalidateQueries({ queryKey: ['guess'] });
         },
     });
 };
