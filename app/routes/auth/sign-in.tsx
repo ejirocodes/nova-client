@@ -1,7 +1,6 @@
 import SignInPage from "~/module/auth/pages/sign-in";
-import type { Route } from "../+types/sign-in";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: "Nova - Sign In" },
     { name: "description", content: "Welcome to Nova" },

@@ -1,7 +1,6 @@
-import type { Route } from "../+types/sign-up";
 import SignUpPage from "~/module/auth/pages/sign-up";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: "Nova - Sign Up" },
     { name: "description", content: "Create your account to get started" },
