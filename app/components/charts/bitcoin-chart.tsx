@@ -52,8 +52,8 @@ export default function BitcoinChart({
   const data = priceData?.historicalData || [];
 
   return (
-    <Card className="bg-[#121212] border-0 rounded-none text-white w-full">
-      <CardHeader className="px-6 pt-6 pb-2">
+    <Card className="bg-[#121212] border-0 rounded-none text-white w-full py-2">
+      <CardHeader className="px-0 pt-1 pb-2">
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
           <div>
             {currentPrice && (

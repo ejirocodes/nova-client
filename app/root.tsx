@@ -97,6 +97,7 @@ export default function App({ loaderData }: Route.ComponentProps) {
       signInFallbackRedirectUrl="/"
       signUpFallbackRedirectUrl="/"
       afterSignOutUrl="/"
+      signUpEmailVerificationUrl="/auth/verify-email-address"
     >
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>

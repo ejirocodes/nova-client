@@ -1,7 +1,8 @@
 import { useState } from "react";
-import BitcoinChart from "~/components/ui/charts/bitcoin-chart";
+import BitcoinChart from "~/components/charts/bitcoin-chart";
 import { useGetPrice } from "~/module/price/queries/get-price";
 import { BitcoinPricePeriod } from "~/lib/client";
+import ProfileCard from "~/module/price/components/profile-card";
 
 export function Dashboard() {
   const [period, setPeriod] = useState<BitcoinPricePeriod>("24h");
@@ -22,16 +23,19 @@ export function Dashboard() {
 
   return (
     <main className="flex min-h-screen h-full flex-col items-center justify-center text-white p-4 bg-[#121212]">
-      <div className="w-full max-w-6xl">
-        <h1 className="text-2xl font-bold text-white mb-6">Bitcoin/USD</h1>
-        <BitcoinChart
-          priceData={priceData}
-          isLoading={isLoading}
-          error={error?.message || null}
-          period={period}
-          onPeriodChange={handlePeriodChange}
-        />
-      </div>
+      <section className="flex items-center justify-center gap-4 w-full">
+        <ProfileCard />
+        <div className="w-full max-w-6xl">
+          <h1 className="text-2xl font-bold text-white">Bitcoin/USD</h1>
+          <BitcoinChart
+            priceData={priceData}
+            isLoading={isLoading}
+            error={error?.message || null}
+            period={period}
+            onPeriodChange={handlePeriodChange}
+          />
+        </div>
+      </section>
     </main>
   );
 }
