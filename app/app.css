@@ -150,6 +150,8 @@ body {
   --nova-border: #2e3238;
   --nova-text-primary: #e3e5e8;
   --nova-text-secondary: #8f97a3;
+  --nova-text-danger: #ff4d4d;
+  --nova-text-success: #4dff4d;
   --nova-icon-bg: #8b98a9;
   --nova-icon-fg: #17181c;
   --nova-active-bg: #8b98a9;
@@ -205,6 +207,12 @@ body {
   }
   .text-nova-icon {
     color: var(--nova-icon-fg);
+  }
+  .text-danger {
+    color: var(--nova-text-danger);
+  }
+  .text-success {
+    color: var(--nova-text-success);
   }
   .bg-nova-fg {
     background-color: var(--nova-icon-fg);

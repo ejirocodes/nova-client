@@ -8,6 +8,7 @@ import { Button } from "~/components/ui/button";
 import GuessDirectionControl from "~/module/guess/components/guess-direction-control";
 import { StatCardsRow } from "~/module/guess/components/stat-cards-row";
 import { useGuessPrice } from "~/module/guess/mutations/guess-price";
+import { getUserActiveGuess } from "~/module/guess/queries/guess-stats";
 
 export function Dashboard() {
   const { isSignedIn, user, isLoaded } = useUser();
@@ -19,6 +20,8 @@ export function Dashboard() {
   const { data: price, isLoading, error } = useGetPrice(period);
 
   const { mutate: createGuess, isPending } = useGuessPrice();
+
+  const { data: guessStats } = getUserActiveGuess();
 
   const handleGuess = () => {
     createGuess({ direction });
@@ -39,7 +42,13 @@ export function Dashboard() {
 
   return (
     <main className="flex min-h-screen h-full flex-col items-center justify-center text-white p-4 bg-[#121212] w-full max-w-[1400px] mx-auto">
-      <StatCardsRow score={347} lost={34} made={8} pending={70} />
+      <StatCardsRow
+        score={guessStats?.score || 0}
+        lost={guessStats?.guessesLost || 0}
+        made={guessStats?.guessesMade || 0}
+        pending={guessStats?.guessesPending || 0}
+        activeGuess={guessStats?.activeGuess || 0}
+      />
       <div>
         <div className="flex flex-col items-center space-y-6 p-6">
           <div className="space-y-2">
@@ -71,10 +80,11 @@ export function Dashboard() {
           <ProfileCard
             profileImage={user?.imageUrl!}
             name={user?.emailAddresses[0].emailAddress!}
-            score={2}
-            guessesMade={10}
-            guessesLost={8}
-            guessesPending={1}
+            score={guessStats?.score || 0}
+            guessesMade={guessStats?.guessesMade || 0}
+            guessesLost={guessStats?.guessesLost || 0}
+            guessesPending={guessStats?.guessesPending || 0}
+            activeGuess={guessStats?.activeGuess || 0}
           />
         </div>
         <div className="w-full bg-nova-fg py-4 shadow-widget rounded-sm border border-nova">

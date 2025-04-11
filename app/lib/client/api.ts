@@ -189,6 +189,49 @@ export const GuessResponseDtoDirectionEnum = {
 
 export type GuessResponseDtoDirectionEnum = typeof GuessResponseDtoDirectionEnum[keyof typeof GuessResponseDtoDirectionEnum];
 
+/**
+ * 
+ * @export
+ * @interface UserGuessStatsResponseDto
+ */
+export interface UserGuessStatsResponseDto {
+    /**
+     * The score of the user
+     * @type {number}
+     * @memberof UserGuessStatsResponseDto
+     */
+    'score': number;
+    /**
+     * The number of guesses made by the user
+     * @type {number}
+     * @memberof UserGuessStatsResponseDto
+     */
+    'guessesMade': number;
+    /**
+     * The number of guesses lost by the user
+     * @type {number}
+     * @memberof UserGuessStatsResponseDto
+     */
+    'guessesLost': number;
+    /**
+     * The number of guesses pending by the user
+     * @type {number}
+     * @memberof UserGuessStatsResponseDto
+     */
+    'guessesPending': number;
+    /**
+     * The active guess of the user
+     * @type {number}
+     * @memberof UserGuessStatsResponseDto
+     */
+    'activeGuess': number;
+    /**
+     * The ID of the user
+     * @type {number}
+     * @memberof UserGuessStatsResponseDto
+     */
+    'id': number;
+}
 
 /**
  * AppApi - axios parameter creator
@@ -494,7 +537,7 @@ export const GuessApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async guessControllerGetUserGuessStats(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async guessControllerGetUserGuessStats(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserGuessStatsResponseDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.guessControllerGetUserGuessStats(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['GuessApi.guessControllerGetUserGuessStats']?.[localVarOperationServerIndex]?.url;
@@ -560,7 +603,7 @@ export const GuessApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        guessControllerGetUserGuessStats(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        guessControllerGetUserGuessStats(options?: RawAxiosRequestConfig): AxiosPromise<UserGuessStatsResponseDto> {
             return localVarFp.guessControllerGetUserGuessStats(options).then((request) => request(axios, basePath));
         },
         /**
@@ -756,6 +799,204 @@ export class PriceApi extends BaseAPI {
      */
     public priceControllerGetBitcoinPrice(period?: BitcoinPricePeriod, options?: RawAxiosRequestConfig) {
         return PriceApiFp(this.configuration).priceControllerGetBitcoinPrice(period, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * UsersApi - axios parameter creator
+ * @export
+ */
+export const UsersApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Get user by clerk id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        usersControllerGetUserByClerkId: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/users/me`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * UsersApi - functional programming interface
+ * @export
+ */
+export const UsersApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = UsersApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Get user by clerk id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async usersControllerGetUserByClerkId(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.usersControllerGetUserByClerkId(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UsersApi.usersControllerGetUserByClerkId']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * UsersApi - factory interface
+ * @export
+ */
+export const UsersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = UsersApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Get user by clerk id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        usersControllerGetUserByClerkId(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.usersControllerGetUserByClerkId(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * UsersApi - object-oriented interface
+ * @export
+ * @class UsersApi
+ * @extends {BaseAPI}
+ */
+export class UsersApi extends BaseAPI {
+    /**
+     * 
+     * @summary Get user by clerk id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UsersApi
+     */
+    public usersControllerGetUserByClerkId(options?: RawAxiosRequestConfig) {
+        return UsersApiFp(this.configuration).usersControllerGetUserByClerkId(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * WebhooksApi - axios parameter creator
+ * @export
+ */
+export const WebhooksApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        webhooksControllerHandleClerkWebhook: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/webhooks/clerk`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * WebhooksApi - functional programming interface
+ * @export
+ */
+export const WebhooksApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = WebhooksApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async webhooksControllerHandleClerkWebhook(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.webhooksControllerHandleClerkWebhook(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['WebhooksApi.webhooksControllerHandleClerkWebhook']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * WebhooksApi - factory interface
+ * @export
+ */
+export const WebhooksApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = WebhooksApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        webhooksControllerHandleClerkWebhook(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.webhooksControllerHandleClerkWebhook(options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * WebhooksApi - object-oriented interface
+ * @export
+ * @class WebhooksApi
+ * @extends {BaseAPI}
+ */
+export class WebhooksApi extends BaseAPI {
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhooksApi
+     */
+    public webhooksControllerHandleClerkWebhook(options?: RawAxiosRequestConfig) {
+        return WebhooksApiFp(this.configuration).webhooksControllerHandleClerkWebhook(options).then((request) => request(this.axios, this.basePath));
     }
 }
 

@@ -1,17 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { useSwaggerApiParams } from '~/hooks/swagger/swagger-api-params';
-import { BitcoinPricePeriod, PriceApi } from '~/lib/client';
+import { GuessApi, } from '~/lib/client';
 
 
-export const useGetPrice = (period: BitcoinPricePeriod) => {
+export const getUserActiveGuess = () => {
     const swaggerApiParams = useSwaggerApiParams();
-    const priceApi = new PriceApi(...swaggerApiParams);
-
+    const guessApi = new GuessApi(...swaggerApiParams);
     return useQuery({
-        queryKey: ['price', period],
+        queryKey: ['user-profile'],
         queryFn: async () => {
             const res =
-                await priceApi.priceControllerGetBitcoinPrice(period);
+                await guessApi.guessControllerGetUserGuessStats();
 
             return res.data;
         },
