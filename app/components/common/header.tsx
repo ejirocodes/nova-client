@@ -15,7 +15,7 @@ const Header = () => {
         <h1 className="text-xl font-medium">Nova</h1>
       </Link>
       <SignedOut>
-        <Button type="button" variant="secondary">
+        <Button type="button" variant="secondary" className="ml-auto">
           <SignInButton />
         </Button>
       </SignedOut>
