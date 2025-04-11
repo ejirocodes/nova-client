@@ -105,7 +105,7 @@ export function Dashboard() {
             </p>
             <GuessDirectionControl
               disabled={
-                isSubmitting || isPending || guessStats?.activeGuess > 0
+                isSubmitting || isPending || (guessStats?.activeGuess ?? 0) > 0
               }
               onSelectionChange={setDirection}
               defaultValue="up"
@@ -114,7 +114,9 @@ export function Dashboard() {
 
           <Button
             onClick={handleGuess}
-            disabled={isSubmitting || isPending || guessStats?.activeGuess > 0}
+            disabled={
+              isSubmitting || isPending || (guessStats?.activeGuess ?? 0) > 0
+            }
             className="cursor-pointer"
           >
             {isSubmitting && !guessStatus?.resolved
