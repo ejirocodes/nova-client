@@ -19,9 +19,17 @@ const Header = () => {
           <SignInButton />
         </Button>
       </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
+      <div className="flex items-center gap-3.5">
+        <SignedIn>
+          <Link
+            to="/dashboard"
+            className="bg-white/5 px-3 py-1.5 rounded-md text-sm font-medium hover:bg-white/10 transition-colors ease-in-out duration-300 cursor-pointer"
+          >
+            Dashboard
+          </Link>
+          <UserButton />
+        </SignedIn>
+      </div>
     </header>
   );
 };
