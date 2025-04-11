@@ -19,6 +19,7 @@ export function Dashboard() {
   const [result, setResult] = useState<string | null>(null);
   const [guessId, setGuessId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(60);
 
   const { data: price, isLoading, error } = useGetPrice(period);
 
@@ -49,11 +50,28 @@ export function Dashboard() {
       setResult(guessStatus.result);
       setIsSubmitting(false);
       refetchGuessStats();
+      setTimeLeft(60);
     }
   }, [guessStatus, guessId, refetchGuessStats]);
 
+  // Countdown timer effect
+  useEffect(() => {
+    let timerId: NodeJS.Timeout;
+
+    if (isSubmitting && !guessStatus?.resolved && timeLeft > 0) {
+      timerId = setInterval(() => {
+        setTimeLeft((prev) => Math.max(0, prev - 1));
+      }, 1000);
+    }
+
+    return () => {
+      if (timerId) clearInterval(timerId);
+    };
+  }, [isSubmitting, guessStatus?.resolved, timeLeft]);
+
   const handleGuess = () => {
     setIsSubmitting(true);
+    setTimeLeft(60);
 
     createGuess(
       { direction },
@@ -70,6 +88,7 @@ export function Dashboard() {
         },
         onError: () => {
           setIsSubmitting(false);
+          setTimeLeft(60);
         },
       }
     );
@@ -98,11 +117,11 @@ export function Dashboard() {
         activeGuess={guessStats?.activeGuess || 0}
       />
       <div>
-        <div className="flex flex-col items-center space-y-6 p-6">
-          <div className="space-y-2">
-            <p className="text-sm text-white">
-              Will the price of Bitcoin go up or down?
-            </p>
+        <div className="flex flex-col items-center space-y-3 p-6">
+          <p className="text-sm text-white">
+            Will the price of Bitcoin go up or down?
+          </p>
+          <div>
             <GuessDirectionControl
               disabled={
                 isSubmitting || isPending || (guessStats?.activeGuess ?? 0) > 0
@@ -114,10 +133,11 @@ export function Dashboard() {
 
           <Button
             onClick={handleGuess}
+            variant={"outline"}
             disabled={
               isSubmitting || isPending || (guessStats?.activeGuess ?? 0) > 0
             }
-            className="cursor-pointer"
+            className="cursor-pointer text-black"
           >
             {isSubmitting && !guessStatus?.resolved
               ? "Waiting for result..."
@@ -125,9 +145,20 @@ export function Dashboard() {
           </Button>
 
           {guessId && !guessStatus?.resolved && (
-            <div className="mt-4 rounded-lg bg-muted p-4 text-black text-center">
-              <p>Your guess is pending resolution...</p>
-              <p className="text-sm">
+            <div className="mt-4 rounded-lg bg-muted p-4 text-white text-center bg-nova-fg">
+              <p>Your guess is pending resolution </p>
+              <div className="mt-2">
+                <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 overflow-hidden">
+                  <div
+                    className="bg-[#ff1492] h-2.5 rounded-full transition-all duration-1000 ease-linear"
+                    style={{ width: `${(timeLeft / 60) * 100}%` }}
+                  ></div>
+                </div>
+                <p className="text-sm mt-1 font-medium transition-all">
+                  {timeLeft} seconds remaining
+                </p>
+              </div>
+              <p className="text-sm mt-2">
                 You guessed: <span className="font-medium">{direction}</span>
               </p>
             </div>
