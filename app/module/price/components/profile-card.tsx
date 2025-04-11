@@ -6,7 +6,6 @@ interface ProfileCardProps {
   score: number;
   guessesMade: number;
   guessesLost: number;
-  guessesPending: number;
   activeGuess: number;
   profileImage: string;
 }
@@ -16,7 +15,6 @@ export default function ProfileCard({
   score,
   guessesMade,
   guessesLost,
-  guessesPending,
   activeGuess,
   profileImage,
 }: ProfileCardProps) {
@@ -63,14 +61,6 @@ export default function ProfileCard({
             </p>
             <p className="text-xs tracking-wider text-nova-secondary uppercase">
               Guesses Made
-            </p>
-          </div>
-          <div className="text-center">
-            <p className="text-xl font-semibold text-nova-primary">
-              {guessesPending}
-            </p>
-            <p className="text-xs tracking-wider text-nova-secondary uppercase">
-              Guesses Pending
             </p>
           </div>
           <div className="text-center">

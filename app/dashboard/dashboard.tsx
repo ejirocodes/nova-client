@@ -32,7 +32,6 @@ export function Dashboard() {
         score={guessStats?.score || 0}
         lost={guessStats?.guessesLost || 0}
         made={guessStats?.guessesMade || 0}
-        pending={guessStats?.guessesPending || 0}
         activeGuess={guessStats?.activeGuess || 0}
       />
       <div>
@@ -46,7 +45,6 @@ export function Dashboard() {
             score={guessStats?.score || 0}
             guessesMade={guessStats?.guessesMade || 0}
             guessesLost={guessStats?.guessesLost || 0}
-            guessesPending={guessStats?.guessesPending || 0}
             activeGuess={guessStats?.activeGuess || 0}
           />
         </div>
