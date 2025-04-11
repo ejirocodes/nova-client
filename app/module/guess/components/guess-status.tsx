@@ -88,8 +88,8 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
   };
 
   return (
-    <div className="flex flex-col items-center space-y-3 p-6">
-      <p className="text-sm text-white">
+    <div className="flex flex-col items-center space-y-3 p-4.5 my-4 rounded-sm bg-nova border border-nova shadow-widget">
+      <p className="text-lg text-white">
         Will the price of Bitcoin go up or down?
       </p>
       <div>
