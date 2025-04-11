@@ -47,13 +47,13 @@ export default function SignInPage() {
         path="/auth/sign-in"
         routing="path"
         signUpUrl="/auth/sign-up"
-        fallbackRedirectUrl={"/"}
-        afterSignOutUrl={"/"}
+        fallbackRedirectUrl={"/dashboard"}
+        afterSignOutUrl={"/auth/sign-in"}
         signInUrl="/auth/sign-in"
         appearance={{
           elements: {
-            formButtonPrimary: "bg-primary hover:bg-primary/90",
-            footerActionLink: "text-primary hover:text-primary/90",
+            rootBox: "mx-auto w-full",
+            card: "shadow-none",
           },
         }}
       />

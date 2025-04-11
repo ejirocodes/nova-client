@@ -9,8 +9,7 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "sonner";
 import { rootAuthLoader } from "@clerk/react-router/ssr.server";
-import { ClerkProvider, useAuth } from "@clerk/react-router";
-import { useEffect } from "react";
+import { ClerkProvider } from "@clerk/react-router";
 import { TooltipProvider } from "~/components/ui/tooltip";
 
 import type { Route } from "./+types/root";
@@ -50,26 +49,6 @@ if (!PUBLISHABLE_KEY) {
   throw new Error("Add your Clerk Publishable Key to the .env file");
 }
 
-// function AuthTokenProvider() {
-//   const { getToken } = useAuth();
-
-//   useEffect(() => {
-//     const tokenProvider = async () => {
-//       try {
-//         return await getToken();
-//       } catch (error) {
-//         console.error("Failed to get auth token:", error);
-//         return null;
-//       }
-//     };
-
-//     setAuthTokenProvider(tokenProvider);
-//     setSearchStreamAuthTokenProvider(tokenProvider);
-//   }, [getToken]);
-
-//   return null;
-// }
-
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -94,13 +73,12 @@ export default function App({ loaderData }: Route.ComponentProps) {
       loaderData={loaderData}
       signUpUrl="/auth/sign-up"
       signInUrl="/auth/sign-in"
-      signInFallbackRedirectUrl="/"
-      signUpFallbackRedirectUrl="/"
-      afterSignOutUrl="/"
+      signInFallbackRedirectUrl="/dashboard"
+      signUpFallbackRedirectUrl="/dashboard"
+      afterSignOutUrl="/auth/sign-in"
     >
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          {/* <AuthTokenProvider /> */}
           <main>
             <Outlet />
           </main>
