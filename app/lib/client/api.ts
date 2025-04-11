@@ -329,6 +329,130 @@ export const GuessApiAxiosParamCreator = function (configuration?: Configuration
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary Get user active guess
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        guessControllerGetUserActiveGuess: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/guess/active`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get user guess statistics
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        guessControllerGetUserGuessStats: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/guess/stats`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Manually trigger resolution of all pending guesses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        guessControllerResolveAllGuesses: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/guess/resolve-all`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Resolve a guess
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        guessControllerResolveGuess: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('guessControllerResolveGuess', 'id', id)
+            const localVarPath = `/api/v1/guess/{id}/resolve`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -352,6 +476,55 @@ export const GuessApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['GuessApi.guessControllerCreateGuess']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+        /**
+         * 
+         * @summary Get user active guess
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async guessControllerGetUserActiveGuess(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.guessControllerGetUserActiveGuess(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['GuessApi.guessControllerGetUserActiveGuess']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get user guess statistics
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async guessControllerGetUserGuessStats(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.guessControllerGetUserGuessStats(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['GuessApi.guessControllerGetUserGuessStats']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Manually trigger resolution of all pending guesses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async guessControllerResolveAllGuesses(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.guessControllerResolveAllGuesses(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['GuessApi.guessControllerResolveAllGuesses']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Resolve a guess
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async guessControllerResolveGuess(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.guessControllerResolveGuess(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['GuessApi.guessControllerResolveGuess']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
     }
 };
 
@@ -371,6 +544,43 @@ export const GuessApiFactory = function (configuration?: Configuration, basePath
          */
         guessControllerCreateGuess(createGuessDto: CreateGuessDto, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.guessControllerCreateGuess(createGuessDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get user active guess
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        guessControllerGetUserActiveGuess(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.guessControllerGetUserActiveGuess(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get user guess statistics
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        guessControllerGetUserGuessStats(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.guessControllerGetUserGuessStats(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Manually trigger resolution of all pending guesses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        guessControllerResolveAllGuesses(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.guessControllerResolveAllGuesses(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Resolve a guess
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        guessControllerResolveGuess(id: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.guessControllerResolveGuess(id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -392,6 +602,51 @@ export class GuessApi extends BaseAPI {
      */
     public guessControllerCreateGuess(createGuessDto: CreateGuessDto, options?: RawAxiosRequestConfig) {
         return GuessApiFp(this.configuration).guessControllerCreateGuess(createGuessDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get user active guess
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GuessApi
+     */
+    public guessControllerGetUserActiveGuess(options?: RawAxiosRequestConfig) {
+        return GuessApiFp(this.configuration).guessControllerGetUserActiveGuess(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get user guess statistics
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GuessApi
+     */
+    public guessControllerGetUserGuessStats(options?: RawAxiosRequestConfig) {
+        return GuessApiFp(this.configuration).guessControllerGetUserGuessStats(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Manually trigger resolution of all pending guesses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GuessApi
+     */
+    public guessControllerResolveAllGuesses(options?: RawAxiosRequestConfig) {
+        return GuessApiFp(this.configuration).guessControllerResolveAllGuesses(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Resolve a guess
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GuessApi
+     */
+    public guessControllerResolveGuess(id: string, options?: RawAxiosRequestConfig) {
+        return GuessApiFp(this.configuration).guessControllerResolveGuess(id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
