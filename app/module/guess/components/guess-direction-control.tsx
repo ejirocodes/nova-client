@@ -6,12 +6,14 @@ interface GuessDirectionControlProps {
   onSelectionChange?: (value: "up" | "down") => void;
   defaultValue?: "up" | "down";
   className?: string;
+  disabled?: boolean;
 }
 
 export default function GuessDirectionControl({
   onSelectionChange,
   defaultValue,
   className,
+  disabled,
 }: GuessDirectionControlProps) {
   const [selected, setSelected] = useState<"up" | "down">(defaultValue || "up");
 
@@ -37,6 +39,7 @@ export default function GuessDirectionControl({
             : "bg-nova hover:bg-nova-border text-nova-primary"
         )}
         aria-pressed={selected === "up"}
+        disabled={disabled}
       >
         <span>Up</span>
         <div
@@ -60,6 +63,7 @@ export default function GuessDirectionControl({
             : "bg-nova hover:bg-nova-border text-nova-primary"
         )}
         aria-pressed={selected === "down"}
+        disabled={disabled}
       >
         <span>Down</span>
         <div

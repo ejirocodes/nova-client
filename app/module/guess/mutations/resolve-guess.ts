@@ -1,17 +1,17 @@
-import { useQuery } from '@tanstack/react-query';
+
+import { useMutation } from '@tanstack/react-query';
 import { useSwaggerApiParams } from '~/hooks/swagger/swagger-api-params';
 import { GuessApi, } from '~/lib/client';
 
 
-export const useUserActiveGuess = () => {
+export const resolveGuess = (guessId: string) => {
     const swaggerApiParams = useSwaggerApiParams();
     const guessApi = new GuessApi(...swaggerApiParams);
-    return useQuery({
-        queryKey: ['user-profile'],
-        queryFn: async () => {
-            const res =
-                await guessApi.guessControllerGetUserGuessStats();
 
+    return useMutation({
+        mutationFn: async () => {
+            const res =
+                await guessApi.guessControllerResolveGuess(guessId);
             return res.data;
         },
     });

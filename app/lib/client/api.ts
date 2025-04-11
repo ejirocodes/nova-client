@@ -161,7 +161,7 @@ export interface GuessResponseDto {
      * @type {string}
      * @memberof GuessResponseDto
      */
-    'guessId': string;
+    'id': string;
     /**
      * The direction of the guess
      * @type {string}
@@ -180,6 +180,48 @@ export interface GuessResponseDto {
      * @memberof GuessResponseDto
      */
     'createdAt': string;
+    /**
+     * The guessed at date of the guess
+     * @type {string}
+     * @memberof GuessResponseDto
+     */
+    'guessedAt': string;
+    /**
+     * The updated at date of the guess
+     * @type {string}
+     * @memberof GuessResponseDto
+     */
+    'updatedAt': string;
+    /**
+     * The user id of the guess
+     * @type {string}
+     * @memberof GuessResponseDto
+     */
+    'userId': string;
+    /**
+     * Whether the guess is active
+     * @type {boolean}
+     * @memberof GuessResponseDto
+     */
+    'isActive': boolean;
+    /**
+     * Whether the guess is resolved
+     * @type {boolean}
+     * @memberof GuessResponseDto
+     */
+    'resolved': boolean;
+    /**
+     * The end price of the guess
+     * @type {string}
+     * @memberof GuessResponseDto
+     */
+    'endPrice': string;
+    /**
+     * The result of the guess
+     * @type {string}
+     * @memberof GuessResponseDto
+     */
+    'result': string;
 }
 
 export const GuessResponseDtoDirectionEnum = {
@@ -374,6 +416,40 @@ export const GuessApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * 
+         * @summary Get guess status
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        guessControllerGetGuessStatus: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('guessControllerGetGuessStatus', 'id', id)
+            const localVarPath = `/api/v1/guess/status/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Get user active guess
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -513,10 +589,23 @@ export const GuessApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async guessControllerCreateGuess(createGuessDto: CreateGuessDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async guessControllerCreateGuess(createGuessDto: CreateGuessDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GuessResponseDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.guessControllerCreateGuess(createGuessDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['GuessApi.guessControllerCreateGuess']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get guess status
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async guessControllerGetGuessStatus(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GuessResponseDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.guessControllerGetGuessStatus(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['GuessApi.guessControllerGetGuessStatus']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -585,8 +674,18 @@ export const GuessApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        guessControllerCreateGuess(createGuessDto: CreateGuessDto, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        guessControllerCreateGuess(createGuessDto: CreateGuessDto, options?: RawAxiosRequestConfig): AxiosPromise<GuessResponseDto> {
             return localVarFp.guessControllerCreateGuess(createGuessDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get guess status
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        guessControllerGetGuessStatus(id: string, options?: RawAxiosRequestConfig): AxiosPromise<GuessResponseDto> {
+            return localVarFp.guessControllerGetGuessStatus(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -645,6 +744,18 @@ export class GuessApi extends BaseAPI {
      */
     public guessControllerCreateGuess(createGuessDto: CreateGuessDto, options?: RawAxiosRequestConfig) {
         return GuessApiFp(this.configuration).guessControllerCreateGuess(createGuessDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get guess status
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GuessApi
+     */
+    public guessControllerGetGuessStatus(id: string, options?: RawAxiosRequestConfig) {
+        return GuessApiFp(this.configuration).guessControllerGetGuessStatus(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
