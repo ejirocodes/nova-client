@@ -20,7 +20,7 @@ export default function Home() {
       <div className="flex flex-col items-center h-screen pt-40">
         <h1 className="text-4xl font-bold">Welcome to Nova</h1>
         <p className="text-lg">
-          Predict Bitcoin price and you might win something huge
+          Predict Bitcoin price and you might win something huge 💰
         </p>
         <div className="flex justify-center mt-4">
           <Dialog open={isVideoOpen} onOpenChange={setIsVideoOpen}>
@@ -44,6 +44,16 @@ export default function Home() {
               </div>
             </DialogContent>
           </Dialog>
+        </div>
+
+        <div className="mt-5 max-w-3xl w-full px-4">
+          <div className="aspect-video w-full overflow-hidden rounded-lg border border-neutral-700">
+            <video
+              src="/demo.mp4"
+              controls
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </div>
     </div>
