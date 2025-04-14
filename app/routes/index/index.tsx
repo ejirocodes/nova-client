@@ -50,6 +50,7 @@ export default function Home() {
           <div className="aspect-video w-full overflow-hidden rounded-lg border border-neutral-700">
             <video
               src="/demo.mp4"
+              poster="/poster.jpeg"
               controls
               className="w-full h-full object-cover"
             />

@@ -28,17 +28,32 @@ export function Dashboard() {
 
   return (
     <main className="flex min-h-screen h-full flex-col items-center justify-center text-white p-4 bg-[#121212] w-full max-w-[1400px] mx-auto">
-      <StatCardsRow
-        score={guessStats?.score || 0}
-        lost={guessStats?.guessesLost || 0}
-        made={guessStats?.guessesMade || 0}
-        won={guessStats?.guessesWon || 0}
-        activeGuess={guessStats?.activeGuess || 0}
-      />
-      <div>
-        <GuessStatus onGuessComplete={refetchGuessStats} />
-      </div>
-      <section className="flex justify-center items-start gap-6 w-full">
+      <section className="flex justify-center items-start gap-6 w-full mt-6">
+        <div>
+          <GuessStatus onGuessComplete={refetchGuessStats} />
+        </div>
+        <div className="max-w-[820px] w-full">
+          <div className="mb-6">
+            <StatCardsRow
+              score={guessStats?.score || 0}
+              lost={guessStats?.guessesLost || 0}
+              made={guessStats?.guessesMade || 0}
+              won={guessStats?.guessesWon || 0}
+              activeGuess={guessStats?.activeGuess || 0}
+            />
+          </div>
+
+          <div className="w-full bg-nova-fg py-4 shadow-widget rounded-sm border border-nova">
+            <h1 className="text-xl font-bold text-white px-6">Bitcoin/USD</h1>
+            <BitcoinChart
+              priceData={priceData}
+              isLoading={isLoading}
+              error={error?.message || null}
+              period={period}
+              onPeriodChange={handlePeriodChange}
+            />
+          </div>
+        </div>
         <div className="flex-shrink-0">
           <ProfileCard
             profileImage={user?.imageUrl!}
@@ -48,16 +63,6 @@ export function Dashboard() {
             guessesLost={guessStats?.guessesLost || 0}
             activeGuess={guessStats?.activeGuess || 0}
             guessesWon={guessStats?.guessesWon || 0}
-          />
-        </div>
-        <div className="w-full bg-nova-fg py-4 shadow-widget rounded-sm border border-nova">
-          <h1 className="text-xl font-bold text-white px-6">Bitcoin/USD</h1>
-          <BitcoinChart
-            priceData={priceData}
-            isLoading={isLoading}
-            error={error?.message || null}
-            period={period}
-            onPeriodChange={handlePeriodChange}
           />
         </div>
       </section>

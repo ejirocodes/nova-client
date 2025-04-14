@@ -110,7 +110,7 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
   // }, [guessStats, activeGuess]);
 
   return (
-    <div className="flex flex-col items-center space-y-3 p-4.5 my-4 rounded-sm bg-nova border border-nova shadow-widget">
+    <div className="flex flex-col items-center space-y-3 p-4.5 rounded-sm bg-nova border border-nova shadow-widget">
       <p className="text-lg text-white">
         Will the price of Bitcoin go up or down?
       </p>

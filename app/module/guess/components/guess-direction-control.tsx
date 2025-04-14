@@ -41,7 +41,7 @@ export default function GuessDirectionControl({
         aria-pressed={selected === "up"}
         disabled={disabled}
       >
-        <span>Guess up</span>
+        <span className="text-nowrap">Guess up</span>
         <div
           className={selected === "up" ? "bg-nova-icon rounded-full p-1" : ""}
         >

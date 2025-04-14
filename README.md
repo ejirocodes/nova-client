@@ -1,5 +1,7 @@
 # Nova: Bitcoin Price Prediction Game
 
+![Nova Poster](./public/poster.jpeg)
+
 A web application that allows users to predict whether the Bitcoin (BTC/USD) price will be higher or lower after one minute.
 
 ## Important links
@@ -10,10 +12,6 @@ A web application that allows users to predict whether the Bitcoin (BTC/USD) pri
 - [Frontend](https://thenova.vercel.app)
 - [Frontend Git Repository](https://github.com/ejirocodes/nova-client)
 - [Frontend API Docs](https://thenova.vercel.app/api/v1/docs)
-
-## Demo
-
-<video src="./public/demo.mp4" width="320" height="240" controls></video>
 
 ## Tech Stack
 
