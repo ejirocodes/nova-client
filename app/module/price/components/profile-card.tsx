@@ -40,13 +40,13 @@ export default function ProfileCard({
 
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center">
-            <p className="text-xl font-semibold text-nova-primary">{score}</p>
+            <p className="text-xl font-semibold text-[#ff1492]">{score}</p>
             <p className="text-xs tracking-wider text-nova-secondary uppercase">
               Score
             </p>
           </div>
           <div className="text-center">
-            <p className="text-xl font-semibold text-nova-primary">
+            <p className="text-xl font-semibold text-[#ff1492]">
               {guessesLost}
             </p>
             <p className="text-xs tracking-wider text-nova-secondary uppercase">
@@ -57,7 +57,7 @@ export default function ProfileCard({
 
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center">
-            <p className="text-xl font-semibold text-nova-primary">
+            <p className="text-xl font-semibold text-[#ff1492]">
               {guessesMade}
             </p>
             <p className="text-xs tracking-wider text-nova-secondary uppercase">
@@ -65,7 +65,7 @@ export default function ProfileCard({
             </p>
           </div>
           <div className="text-center">
-            <p className="text-xl font-semibold text-nova-primary">
+            <p className="text-xl font-semibold text-[#ff1492]">
               {activeGuess}
             </p>
             <p className="text-xs tracking-wider text-nova-secondary uppercase">
@@ -75,9 +75,7 @@ export default function ProfileCard({
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center">
-            <p className="text-xl font-semibold text-nova-primary">
-              {guessesWon}
-            </p>
+            <p className="text-xl font-semibold text-[#ff1492]">{guessesWon}</p>
             <p className="text-xs tracking-wider text-nova-secondary uppercase">
               Guesses Won
             </p>
