@@ -1,5 +1,4 @@
-import { Globe, Facebook, Twitter, Youtube } from "lucide-react";
-import { Card, CardContent, CardFooter } from "~/components/ui/card";
+import { Card, CardContent } from "~/components/ui/card";
 
 interface ProfileCardProps {
   name: string;
@@ -85,21 +84,6 @@ export default function ProfileCard({
           </div>
         </div>
       </CardContent>
-
-      <CardFooter className="border-t border-nova flex justify-center space-x-10 py-4">
-        <a href="#" className="text-nova-secondary hover:text-nova-primary">
-          <Globe className="h-6 w-6" />
-        </a>
-        <a href="#" className="text-nova-secondary hover:text-nova-primary">
-          <Youtube className="h-6 w-6" />
-        </a>
-        <a href="#" className="text-nova-secondary hover:text-nova-primary">
-          <Facebook className="h-6 w-6" />
-        </a>
-        <a href="#" className="text-nova-secondary hover:text-nova-primary">
-          <Twitter className="h-6 w-6" />
-        </a>
-      </CardFooter>
     </Card>
   );
 }
