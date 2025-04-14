@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BitcoinChart from "~/components/charts/bitcoin-chart";
 import { useGetPrice } from "~/module/price/queries/get-price";
 import { BitcoinPricePeriod } from "~/lib/client";
