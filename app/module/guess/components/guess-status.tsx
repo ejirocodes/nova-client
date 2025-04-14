@@ -17,7 +17,7 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
   const [guessId, setGuessId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [timeLeft, setTimeLeft] = useState(TIME_LEFT);
-
+  const [guessStartPrice, setGuessStartPrice] = useState<number | null>(null);
   const { mutate: createGuess, isPending } = useGuessPrice();
   const { data: guessStats, refetch: refetchGuessStats } = useUserGuessStats();
   const { data: guessStatus, refetch: refetchGuessStatus } = useGuessStatus(
@@ -69,6 +69,10 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
   }, [isSubmitting, guessStatus?.resolved, timeLeft]);
 
   const handleGuess = () => {
+    setResult(null);
+    setGuessId(null);
+    setGuessStartPrice(null);
+
     setIsSubmitting(true);
     setTimeLeft(TIME_LEFT);
 
@@ -78,7 +82,7 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
         onSuccess: (data) => {
           setGuessId(data.id);
           refetchGuessStats();
-
+          setGuessStartPrice(data.startPrice);
           setTimeout(() => {
             if (!guessStatus?.resolved) {
               setIsSubmitting(false);
@@ -93,22 +97,27 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
     );
   };
 
-  useEffect(() => {
-    // Here, we are getting active guesses and checking their status on page refresh
-    if (guessStats?.activeGuess && guessStats.activeGuess > 0 && !isPending) {
-      refetchActiveGuess();
-      if (activeGuess?.[0].id) {
-        setGuessId(activeGuess?.[0].id);
-        refetchGuessStatus();
-      }
-    }
-  }, [guessStats, activeGuess]);
+  // useEffect(() => {
+  //   // Here, we are getting active guesses and checking their status on page refresh
+  //   if (guessStats?.activeGuess && guessStats.activeGuess > 0 && !isPending) {
+  //     refetchActiveGuess();
+  //     if (activeGuess?.[0].id) {
+  //       setGuessId(activeGuess?.[0].id);
+  //       refetchGuessStatus();
+  //     }
+  //   }
+  // }, [guessStats, activeGuess]);
 
   return (
     <div className="flex flex-col items-center space-y-3 p-4.5 my-4 rounded-sm bg-nova border border-nova shadow-widget">
       <p className="text-lg text-white">
         Will the price of Bitcoin go up or down?
       </p>
+      {guessStats?.activeGuess ? (
+        <p>Active Guess: {guessStats.activeGuess}</p>
+      ) : (
+        <p>No active guess</p>
+      )}
       <div>
         <GuessDirectionControl
           disabled={
@@ -131,6 +140,8 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
           ? "Waiting for result..."
           : "Submit Guess"}
       </Button>
+
+      {guessStartPrice && <p>Start Price: {guessStartPrice}</p>}
 
       {guessId && !guessStatus?.resolved && (
         <div className="mt-4 rounded-lg bg-muted p-4 text-white text-center bg-nova-fg">
@@ -162,6 +173,20 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
           <p className="text-sm">
             You guessed:{" "}
             <span className="font-medium">{guessStatus.direction}</span>
+            <p>Start Price: {guessStatus.startPrice}</p>
+            <p>End Price: {guessStatus.endPrice}</p>
+            <p className="italic">
+              {/* we want to say went up or down by the amount */}
+              Result: The price of Bitcoin went{" "}
+              {Number(guessStatus.startPrice) < Number(guessStatus.endPrice)
+                ? "up"
+                : "down"}{" "}
+              by{" "}
+              {Math.abs(
+                Number(guessStatus.startPrice) - Number(guessStatus.endPrice)
+              )}{" "}
+              USD
+            </p>
           </p>
         </div>
       )}
