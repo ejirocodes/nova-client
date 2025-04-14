@@ -135,7 +135,7 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
         disabled={
           isSubmitting || isPending || (guessStats?.activeGuess ?? 0) > 0
         }
-        className="cursor-pointer border-none rounded-none text-white w-full h-12 bg-[#ff1492] hover:bg-[#ff1492]/80"
+        className="cursor-pointer border-none hover:text-white text-white w-full h-12 bg-[#ff1492] hover:bg-[#ff1492]/80"
       >
         {isSubmitting && !guessStatus?.resolved
           ? "Waiting for result..."
