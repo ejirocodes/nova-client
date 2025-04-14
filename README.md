@@ -13,7 +13,7 @@ A web application that allows users to predict whether the Bitcoin (BTC/USD) pri
 
 ## Demo
 
-<video src="./public/demo.mp4" controls></video>
+<video src="./public/demo.mp4" width="320" height="240" controls></video>
 
 ## Tech Stack
 
