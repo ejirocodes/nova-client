@@ -17,7 +17,7 @@ export function StatCardsRow({
   activeGuess,
 }: StatCardsRowProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-2.5 w-full">
       <StatCard value={score} label="Score" icon={DollarSign} />
       <StatCard value={lost} label="Points Lost" icon={HandCoins} />
       <StatCard value={won} label="Points Won" icon={HandCoins} />

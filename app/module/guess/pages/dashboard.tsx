@@ -27,13 +27,13 @@ export function Dashboard() {
     : undefined;
 
   return (
-    <main className="flex min-h-screen h-full flex-col items-center justify-center text-white p-4 bg-[#121212] w-full max-w-[1500px] mx-auto">
-      <section className="flex justify-center items-start gap-6 w-full mt-6">
+    <main className="flex min-h-screen h-full flex-col items-center justify-center text-white p-4 pt-0 bg-[#121212] w-full max-w-[1500px] mx-auto">
+      <section className="flex justify-center items-start gap-4 w-full mt-6">
         <div>
           <GuessStatus onGuessComplete={refetchGuessStats} />
         </div>
         <div className="max-w-[820px] w-full">
-          <div className="mb-6">
+          <div className="mb-4">
             <StatCardsRow
               score={guessStats?.score || 0}
               lost={guessStats?.guessesLost || 0}
