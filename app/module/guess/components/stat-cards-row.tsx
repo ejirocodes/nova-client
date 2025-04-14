@@ -21,7 +21,7 @@ export function StatCardsRow({
       <StatCard value={score} label="Score" icon={DollarSign} />
       <StatCard value={lost} label="Points Lost" icon={HandCoins} />
       <StatCard value={won} label="Points Won" icon={HandCoins} />
-      <StatCard value={made} label="Points Made" icon={Dice6} />
+      <StatCard value={made} label="Total Guess" icon={Dice6} />
       <StatCard value={activeGuess} label="Active Guess" icon={Flame} />
     </div>
   );
