@@ -41,7 +41,7 @@ export default function GuessDirectionControl({
         aria-pressed={selected === "up"}
         disabled={disabled}
       >
-        <span>Up</span>
+        <span>Guess up</span>
         <div
           className={selected === "up" ? "bg-nova-icon rounded-full p-1" : ""}
         >
@@ -65,7 +65,7 @@ export default function GuessDirectionControl({
         aria-pressed={selected === "down"}
         disabled={disabled}
       >
-        <span>Down</span>
+        <span className="text-nowrap">Guess down</span>
         <div
           className={selected === "down" ? "bg-nova-icon rounded-full p-1" : ""}
         >
