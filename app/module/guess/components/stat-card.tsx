@@ -24,8 +24,8 @@ export function StatCard({ value, label, icon: Icon }: StatCardProps) {
           {label}
         </span>
       </div>
-      <div className="bg-nova-icon w-10 h-10 rounded-full flex items-center justify-center">
-        <Icon className="w-6 h-6 text-nova-icon" />
+      <div className="bg-nova-icon w-6 h-6 rounded-full flex items-center justify-center">
+        <Icon className="w-4 h-4 text-nova-icon" />
       </div>
     </div>
   );
