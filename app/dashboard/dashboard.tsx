@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BitcoinChart from "~/components/charts/bitcoin-chart";
 import { useGetPrice } from "~/module/price/queries/get-price";
 import { BitcoinPricePeriod } from "~/lib/client";
 import ProfileCard from "~/module/price/components/profile-card";
 import { useUser } from "@clerk/react-router";
 import { GuessStatus, StatCardsRow } from "~/module/guess/components";
-import { useUserActiveGuess } from "~/module/guess/queries/guess-stats";
+import { useUserGuessStats } from "~/module/guess/queries/guess-stats";
 
 export function Dashboard() {
   const { user } = useUser();
   const [period, setPeriod] = useState<BitcoinPricePeriod>("24h");
   const { data: price, isLoading, error } = useGetPrice(period);
-  const { data: guessStats, refetch: refetchGuessStats } = useUserActiveGuess();
+  const { data: guessStats, refetch: refetchGuessStats } = useUserGuessStats();
 
   const handlePeriodChange = (newPeriod: BitcoinPricePeriod) => {
     setPeriod(newPeriod);

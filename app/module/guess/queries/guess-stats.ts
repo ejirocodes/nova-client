@@ -3,11 +3,11 @@ import { useSwaggerApiParams } from '~/hooks/swagger/swagger-api-params';
 import { GuessApi, } from '~/lib/client';
 
 
-export const useUserActiveGuess = () => {
+export const useUserGuessStats = () => {
     const swaggerApiParams = useSwaggerApiParams();
     const guessApi = new GuessApi(...swaggerApiParams);
     return useQuery({
-        queryKey: ['user-profile'],
+        queryKey: ['user-guess-stats'],
         queryFn: async () => {
             const res =
                 await guessApi.guessControllerGetUserGuessStats();

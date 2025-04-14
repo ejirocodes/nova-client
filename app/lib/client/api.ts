@@ -153,6 +153,79 @@ export type GuessDirection = typeof GuessDirection[keyof typeof GuessDirection];
 /**
  * 
  * @export
+ * @interface GuessDto
+ */
+export interface GuessDto {
+    /**
+     * 
+     * @type {object}
+     * @memberof GuessDto
+     */
+    'result': object;
+    /**
+     * 
+     * @type {string}
+     * @memberof GuessDto
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GuessDto
+     */
+    'userId': string;
+    /**
+     * 
+     * @type {object}
+     * @memberof GuessDto
+     */
+    'direction': object;
+    /**
+     * 
+     * @type {number}
+     * @memberof GuessDto
+     */
+    'startPrice': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GuessDto
+     */
+    'endPrice': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof GuessDto
+     */
+    'guessedAt': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GuessDto
+     */
+    'isActive': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GuessDto
+     */
+    'resolved': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GuessDto
+     */
+    'createdAt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GuessDto
+     */
+    'updatedAt': string;
+}
+/**
+ * 
+ * @export
  * @interface GuessResponseDto
  */
 export interface GuessResponseDto {
@@ -614,7 +687,7 @@ export const GuessApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async guessControllerGetUserActiveGuess(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async guessControllerGetUserActiveGuess(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GuessDto>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.guessControllerGetUserActiveGuess(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['GuessApi.guessControllerGetUserActiveGuess']?.[localVarOperationServerIndex]?.url;
@@ -693,7 +766,7 @@ export const GuessApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        guessControllerGetUserActiveGuess(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        guessControllerGetUserActiveGuess(options?: RawAxiosRequestConfig): AxiosPromise<Array<GuessDto>> {
             return localVarFp.guessControllerGetUserActiveGuess(options).then((request) => request(axios, basePath));
         },
         /**

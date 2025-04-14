@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { Button } from "~/components/ui/button";
 import GuessDirectionControl from "./guess-direction-control";
 import { useGuessPrice } from "../mutations/guess-price";
-import { useUserActiveGuess } from "../queries/guess-stats";
+import { useUserGuessStats } from "../queries/guess-stats";
 import { useGuessStatus } from "../queries/guess-status";
+import { useUserActiveGuess } from "../queries/active-guess";
+import { TIME_LEFT, TIME_LEFT_MS } from "../constants";
 
 interface GuessStatusProps {
   onGuessComplete?: () => void;
@@ -14,12 +16,16 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
   const [result, setResult] = useState<string | null>(null);
   const [guessId, setGuessId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(TIME_LEFT);
 
   const { mutate: createGuess, isPending } = useGuessPrice();
-  const { data: guessStats, refetch: refetchGuessStats } = useUserActiveGuess();
+  const { data: guessStats, refetch: refetchGuessStats } = useUserGuessStats();
   const { data: guessStatus, refetch: refetchGuessStatus } = useGuessStatus(
     guessId || ""
+  );
+
+  const { data: activeGuess, refetch: refetchActiveGuess } = useUserActiveGuess(
+    !!guessStats?.activeGuess
   );
 
   useEffect(() => {
@@ -41,7 +47,7 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
       setResult(guessStatus.result);
       setIsSubmitting(false);
       refetchGuessStats();
-      setTimeLeft(60);
+      setTimeLeft(TIME_LEFT);
       if (onGuessComplete) {
         onGuessComplete();
       }
@@ -64,7 +70,7 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
 
   const handleGuess = () => {
     setIsSubmitting(true);
-    setTimeLeft(60);
+    setTimeLeft(TIME_LEFT);
 
     createGuess(
       { direction },
@@ -77,15 +83,26 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
             if (!guessStatus?.resolved) {
               setIsSubmitting(false);
             }
-          }, 60000);
+          }, TIME_LEFT_MS);
         },
         onError: () => {
           setIsSubmitting(false);
-          setTimeLeft(60);
+          setTimeLeft(TIME_LEFT);
         },
       }
     );
   };
+
+  useEffect(() => {
+    // Here, we are getting active guesses and checking their status on page refresh
+    if (guessStats?.activeGuess && guessStats.activeGuess > 0 && !isPending) {
+      refetchActiveGuess();
+      if (activeGuess?.[0].id) {
+        setGuessId(activeGuess?.[0].id);
+        refetchGuessStatus();
+      }
+    }
+  }, [guessStats, activeGuess]);
 
   return (
     <div className="flex flex-col items-center space-y-3 p-4.5 my-4 rounded-sm bg-nova border border-nova shadow-widget">
