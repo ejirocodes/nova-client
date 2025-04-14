@@ -4,6 +4,11 @@
 
 A web application that allows users to predict whether the Bitcoin (BTC/USD) price will be higher or lower after one minute.
 
+## Demo
+https://github.com/user-attachments/assets/77ddfe3f-268a-4925-92fe-42bbebb5989d
+
+
+
 ## Important links
 
 - [Backend API](https://nova-backend-production-e68c.up.railway.app/api/v1)
