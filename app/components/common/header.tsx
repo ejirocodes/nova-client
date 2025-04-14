@@ -12,7 +12,8 @@ const Header = () => {
     <header className="flex items-center justify-between border-b border-white/5 bg-[#121212] text-white px-8 py-3">
       <Link to="/" className="flex items-center gap-3.5">
         <img src="/logo.jpg" alt="Nova" className="w-8 h-8 rounded-lg" />
-        <h1 className="text-xl font-medium">Nova</h1>
+        <h1 className="text-xl font-medium">Nova</h1>{" "}
+        <p className="text-[#8B8B8B] text-xs">BTC/USD Guess Game</p>
       </Link>
       <SignedOut>
         <Button

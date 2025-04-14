@@ -111,7 +111,7 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
 
   return (
     <div className="flex flex-col items-center space-y-3 p-4.5 rounded-sm bg-nova border border-nova shadow-widget">
-      <p className="text-lg text-white">
+      <p className="text-2xl font-semibold text-white">
         Will the price of Bitcoin go up or down?
       </p>
       {guessStats?.activeGuess ? (
@@ -135,11 +135,11 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
         disabled={
           isSubmitting || isPending || (guessStats?.activeGuess ?? 0) > 0
         }
-        className="cursor-pointer text-black"
+        className="cursor-pointer text-black border-none rounded-none text-white w-full h-12 bg-[#ff1492] hover:bg-[#ff1492]/80"
       >
         {isSubmitting && !guessStatus?.resolved
           ? "Waiting for result..."
-          : "Submit Guess"}
+          : "Submit guess"}
       </Button>
 
       {guessStartPrice && <p>Start Price: {formatCurrency(guessStartPrice)}</p>}

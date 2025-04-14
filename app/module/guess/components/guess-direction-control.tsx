@@ -33,48 +33,34 @@ export default function GuessDirectionControl({
         type="button"
         onClick={() => handleSelection("up")}
         className={cn(
-          "flex-1 cursor-pointer rounded-l-lg px-4 py-2 text-center text-sm font-medium transition-all flex items-center justify-center gap-2",
+          "flex-1 bg-[#2F2F2F] text-white cursor-pointer rounded-l-lg px-4 py-2 text-center text-sm font-medium transition-all flex items-center justify-center gap-2",
           selected === "up"
-            ? "bg-nova-active text-nova-active"
+            ? ""
             : "bg-nova hover:bg-nova-border text-nova-primary"
         )}
         aria-pressed={selected === "up"}
         disabled={disabled}
       >
         <span className="text-nowrap">Guess up</span>
-        <div
-          className={selected === "up" ? "bg-nova-icon rounded-full p-1" : ""}
-        >
-          <ArrowUp
-            className={cn(
-              "w-4 h-4",
-              selected === "up" ? "text-nova-icon-dark" : "text-nova-primary"
-            )}
-          />
+        <div className={selected === "up" ? " p-1" : ""}>
+          <ArrowUp className={cn("w-6 h-6 text-green-500 font-bold")} />
         </div>
       </button>
       <button
         type="button"
         onClick={() => handleSelection("down")}
         className={cn(
-          "flex-1 cursor-pointer rounded-r-lg px-4 py-2 text-center text-sm font-medium transition-all flex items-center justify-center gap-2",
+          "flex-1 bg-[#2F2F2F] text-white cursor-pointer rounded-r-lg px-4 py-2 text-center text-sm font-medium transition-all flex items-center justify-center gap-2",
           selected === "down"
-            ? "bg-nova-active text-nova-active"
+            ? ""
             : "bg-nova hover:bg-nova-border text-nova-primary"
         )}
         aria-pressed={selected === "down"}
         disabled={disabled}
       >
         <span className="text-nowrap">Guess down</span>
-        <div
-          className={selected === "down" ? "bg-nova-icon rounded-full p-1" : ""}
-        >
-          <ArrowDown
-            className={cn(
-              "w-4 h-4",
-              selected === "down" ? "text-nova-icon-dark" : "text-nova-primary"
-            )}
-          />
+        <div className={selected === "down" ? " p-1" : ""}>
+          <ArrowDown className={cn("w-6 h-6 text-red-500 font-bold")} />
         </div>
       </button>
     </div>

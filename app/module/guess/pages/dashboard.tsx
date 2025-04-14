@@ -27,7 +27,7 @@ export function Dashboard() {
     : undefined;
 
   return (
-    <main className="flex min-h-screen h-full flex-col items-center justify-center text-white p-4 bg-[#121212] w-full max-w-[1400px] mx-auto">
+    <main className="flex min-h-screen h-full flex-col items-center justify-center text-white p-4 bg-[#121212] w-full max-w-[1500px] mx-auto">
       <section className="flex justify-center items-start gap-6 w-full mt-6">
         <div>
           <GuessStatus onGuessComplete={refetchGuessStats} />
