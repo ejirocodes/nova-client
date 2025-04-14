@@ -329,6 +329,12 @@ export interface UserGuessStatsResponseDto {
      */
     'guessesLost': number;
     /**
+     * The number of guesses won by the user
+     * @type {number}
+     * @memberof UserGuessStatsResponseDto
+     */
+    'guessesWon': number;
+    /**
      * The number of guesses pending by the user
      * @type {number}
      * @memberof UserGuessStatsResponseDto

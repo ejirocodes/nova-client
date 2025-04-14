@@ -32,6 +32,7 @@ export function Dashboard() {
         score={guessStats?.score || 0}
         lost={guessStats?.guessesLost || 0}
         made={guessStats?.guessesMade || 0}
+        won={guessStats?.guessesWon || 0}
         activeGuess={guessStats?.activeGuess || 0}
       />
       <div>
@@ -46,6 +47,7 @@ export function Dashboard() {
             guessesMade={guessStats?.guessesMade || 0}
             guessesLost={guessStats?.guessesLost || 0}
             activeGuess={guessStats?.activeGuess || 0}
+            guessesWon={guessStats?.guessesWon || 0}
           />
         </div>
         <div className="w-full bg-nova-fg py-4 shadow-widget rounded-sm border border-nova">
