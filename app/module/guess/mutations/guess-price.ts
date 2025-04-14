@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSwaggerApiParams } from '~/hooks/swagger/swagger-api-params';
 import { GuessApi, type CreateGuessDto } from '~/lib/client';
+import { GUESS_QUERY_KEY } from '../constants';
 
 export const useGuessPrice = () => {
     const queryClient = useQueryClient();
@@ -14,7 +15,7 @@ export const useGuessPrice = () => {
             return res.data;
         },
         onSuccess: async (data) => {
-            await queryClient.invalidateQueries({ queryKey: ['guess'] });
+            await queryClient.invalidateQueries({ queryKey: [GUESS_QUERY_KEY] });
         },
     });
 };

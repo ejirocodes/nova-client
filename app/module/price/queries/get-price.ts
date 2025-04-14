@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useSwaggerApiParams } from '~/hooks/swagger/swagger-api-params';
 import { BitcoinPricePeriod, PriceApi } from '~/lib/client';
+import { PRICE_QUERY_KEY, PRICE_QUERY_REFETCH_INTERVAL } from '../constant';
 
 
 export const useGetPrice = (period: BitcoinPricePeriod) => {
@@ -8,8 +9,8 @@ export const useGetPrice = (period: BitcoinPricePeriod) => {
     const priceApi = new PriceApi(...swaggerApiParams);
 
     return useQuery({
-        queryKey: ['price', period],
-        refetchOnWindowFocus: true,
+        queryKey: [PRICE_QUERY_KEY, period],
+        refetchInterval: PRICE_QUERY_REFETCH_INTERVAL,
         queryFn: async () => {
             const res =
                 await priceApi.priceControllerGetBitcoinPrice(period);
