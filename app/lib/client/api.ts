@@ -285,10 +285,10 @@ export interface GuessResponseDto {
     'resolved': boolean;
     /**
      * The end price of the guess
-     * @type {string}
+     * @type {number}
      * @memberof GuessResponseDto
      */
-    'endPrice': string;
+    'endPrice': number;
     /**
      * The result of the guess
      * @type {string}

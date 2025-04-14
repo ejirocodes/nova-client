@@ -6,6 +6,7 @@ import { useUserGuessStats } from "../queries/guess-stats";
 import { useGuessStatus } from "../queries/guess-status";
 import { useUserActiveGuess } from "../queries/active-guess";
 import { TIME_LEFT, TIME_LEFT_MS } from "../constants";
+import { formatCurrency } from "~/lib/utils/currency-formatter";
 
 interface GuessStatusProps {
   onGuessComplete?: () => void;
@@ -141,7 +142,7 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
           : "Submit Guess"}
       </Button>
 
-      {guessStartPrice && <p>Start Price: {guessStartPrice}</p>}
+      {guessStartPrice && <p>Start Price: {formatCurrency(guessStartPrice)}</p>}
 
       {guessId && !guessStatus?.resolved && (
         <div className="mt-4 rounded-lg bg-muted p-4 text-white text-center bg-nova-fg">
@@ -173,19 +174,15 @@ export default function GuessStatus({ onGuessComplete }: GuessStatusProps) {
           <p className="text-sm">
             You guessed:{" "}
             <span className="font-medium">{guessStatus.direction}</span>
-            <p>Start Price: {guessStatus.startPrice}</p>
-            <p>End Price: {guessStatus.endPrice}</p>
+            <p>Start Price: {formatCurrency(guessStatus.startPrice)}</p>
+            <p>End Price: {formatCurrency(guessStatus.endPrice)}</p>
             <p className="italic">
               {/* we want to say went up or down by the amount */}
               Result: The price of Bitcoin went{" "}
-              {Number(guessStatus.startPrice) < Number(guessStatus.endPrice)
+              {guessStatus.startPrice < guessStatus.endPrice
                 ? "up"
-                : "down"}{" "}
-              by{" "}
-              {Math.abs(
-                Number(guessStatus.startPrice) - Number(guessStatus.endPrice)
-              )}{" "}
-              USD
+                : "down"} by{" "}
+              {Math.abs(guessStatus.startPrice - guessStatus.endPrice)} USD
             </p>
           </p>
         </div>

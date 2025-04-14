@@ -9,6 +9,7 @@ export const useGetPrice = (period: BitcoinPricePeriod) => {
 
     return useQuery({
         queryKey: ['price', period],
+        refetchOnWindowFocus: true,
         queryFn: async () => {
             const res =
                 await priceApi.priceControllerGetBitcoinPrice(period);
