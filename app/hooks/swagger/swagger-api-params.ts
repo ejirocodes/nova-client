@@ -22,7 +22,6 @@ export const useSwaggerApiParams = (): [
             return config;
         },
         (error) => {
-            // Do something with request error
             return Promise.reject(error);
         },
     );

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "~/components/common/header";
 import { Dialog, DialogContent, DialogTrigger } from "~/components/ui/dialog";
 import { Button } from "~/components/ui/button";
-import { Play } from "lucide-react";
+import { Github, Play } from "lucide-react";
 
 export function meta() {
   return [
@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <div className="bg-[#121212] text-white">
       <Header />
-      <div className="flex flex-col items-center h-screen pt-40">
+      <div className="flex flex-col items-center  pt-40 h-calc(100vh - 100px)">
         <h1 className="text-4xl font-bold">Welcome to Nova</h1>
         <p className="text-lg">
           Predict Bitcoin price and you might win something huge 💰
@@ -57,6 +57,29 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <footer className="bg-black border-t border-neutral-700 h-10 flex items-center justify-center gap-4 mt-8">
+        <div className="flex justify-between items-center gap-4">
+          <p className="text-sm">
+            Built by{" "}
+            <a
+              href="https://dub.sh/ejiro-linkd?ref=nova"
+              target="_blank"
+              className="underline"
+            >
+              ejirocodes
+            </a>
+          </p>
+          <a
+            href="https://github.com/ejirocodes/nova-backend"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-sm"
+          >
+            <Github size={18} />
+            <span>Github</span>
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }
